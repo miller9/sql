@@ -17,7 +17,7 @@ let db = new sqlite3.Database('proyecto-backend-db');
 
 // crear ruta POST para insertar datos en la tabla. ruta: 'http://localhost:3000/pendientes'
 app.post('/pendientes',function(req,res){
-  db.run("INSERT INTO tasks(description) VALUES('Agregando tarea 1')"); // consulta SQL para agregar datos
+  db.run(`INSERT INTO tasks(description) VALUES('${req.body.description}')`); // consulta SQL para agregar datos
   res.send('Insercion Finalizada'); //respuesta de la ejecucion de la consulta
 })
 
