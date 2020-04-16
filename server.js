@@ -16,8 +16,9 @@ let db = new sqlite3.Database('proyecto-backend-db');
 // db.run('CREATE TABLE tasks(id int AUTO_INCREMENT, description varchar(255))');
 
 // crear ruta POST para insertar datos en la tabla. ruta: 'http://localhost:3000/pendientes'
+// modificar Key + Value en Body de Postman (description=algo)
 app.post('/pendientes',function(req,res){
-  db.run(`INSERT INTO tasks(description) VALUES('${req.body.description}')`); // consulta SQL para agregar datos
+  db.run(`INSERT INTO tasks(description) VALUES(?)`,req.body.description); // SANITIZE process
   res.send('Insercion Finalizada'); //respuesta de la ejecucion de la consulta
 })
 
